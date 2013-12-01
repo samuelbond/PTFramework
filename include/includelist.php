@@ -11,3 +11,5 @@ include _SITE_PATH."application/router.php";
 include _SITE_PATH."application/template.php";
 include _SITE_PATH."exceptions/invalidpathException.php";
 include _SITE_PATH."exceptions/templateException.php";
+include _SITE_PATH."model/databaseutil.php";
+include _SITE_PATH."application/basecomponent.php";

@@ -12,10 +12,11 @@ define('_SITE_PATH', $sitepath."/");
 
 include 'include/includelist.php';
 $registry = new \application\registry();
-
+$model = new \model\databaseutil();
+$registry->model = $model::connect();
 $registry->router = new \application\router($registry);
 $registry->template = new \application\template($registry);
 $registry->template->setViewPath($sitepath."/view/");
 $route = "";
 $route = @$_GET['rt'];
-$registry->router->loadController($route, $sitepath."/controller/");
+$registry->router->loadController($route, $sitepath."/controller/", $sitepath."/component/");

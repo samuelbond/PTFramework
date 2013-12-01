@@ -15,6 +15,7 @@ class router {
     private $path;
     private $controller;
     private $action;
+    private $componentPath;
 
 
     public function __construct($registry)
@@ -33,7 +34,18 @@ class router {
 
     }
 
-    public function loadController($route, $path)
+    public function setComponentPath($path)
+    {
+
+        if(!(is_dir($path)))
+        {
+            throw new invalidpathException("Invalid Path Exception\nInvalid ComponentPath provided: ");
+        }
+        $this->componentPath = $path;
+
+    }
+
+    public function loadController($route, $path, $componetpath)
     {
         try
         {
@@ -65,7 +77,11 @@ class router {
         }
 
         $controllerComponents = "controllerComponents";
-        $this->loadComponents($controllerClass->$controllerComponents());
+        foreach($controllerClass->$controllerComponents() as $component)
+        {
+            $this->loadComponents($component, $componetpath);
+        }
+
         $controllerClass->$controllerAction();
     }
 
@@ -94,7 +110,29 @@ class router {
         return $this->path.$this->controller."Controller.php";
     }
 
-    public function loadComponents($components)
+    public function loadComponents($components, $path)
     {
+        try
+        {
+            $this->setComponentPath($path);
+        }catch (\Exception $ex)
+        {
+            echo $ex->getMessage();
+            return false;
+        }
+
+        $componentFile = $this->componentPath.$components."/".$components.".php";
+        try{
+        if(!is_readable($componentFile)){
+            throw new \Exception("Invalid Component, Component not found");
+        }
+        }catch (\Exception $ex){
+            echo $ex->getMessage();
+            return false;
+        }
+
+        include $componentFile;
+
+
     }
 }

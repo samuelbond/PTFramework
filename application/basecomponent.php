@@ -9,7 +9,7 @@ namespace application;
 
 Abstract class basecomponent {
 
-    private $registry;
+    protected  $registry;
 
     public function __construct($registry)
     {
