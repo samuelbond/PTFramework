@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
+<IfModule mod_php5.c>
+  #Adjusted error handling per http://www.cyberciti.biz/tips/php-howto-turn-on-error-log-file.html
+  #And also https://bugs.launchpad.net/ubuntu/+source/apache2/+bug/512167  #3 comment
+  php_value display_errors                  On
+
+</IfModule>
