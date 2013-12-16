@@ -21,21 +21,17 @@ class loginController extends basecontroller{
     {
         $usr = new usercomponent($this->registry);
         $usr->init();
-        $usr->setFirstname("Aniko");
-        $usr->setLastname("Bond");
-        $usr->setAddress("Petofi Ter");
-        $usr->setCity("Debrecen");
-        $usr->setCountry("Hungary");
-        $usr->setEmail("aniko@example.com");
-        $usr->setLandline("086566554");
-        $usr->setMobile("06755677898");
         $usr->setUserid("QE76BV");
+        $usr->getUser();
+        $usr->setFirstname("Annik");
+        $usr->setLastname("B");
 
-        if($usr->registerNewUser()){
-            echo "Your Registration was successful ".$usr->getFirstname();
+
+        if($usr->editUser()){
+            echo "Your ACCOUUNT was updated successful ".$usr->getFirstname();
         }
         else{
-            echo "Registration failed";
+            echo "Updated failed";
         }
 
     }

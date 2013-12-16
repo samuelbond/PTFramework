@@ -20,4 +20,8 @@ class indexController extends basecontroller{
     public function action2(){
 
     }
+
+    public function controllerComponents(){
+        return array();
+    }
 }

@@ -49,6 +49,29 @@ class usercomponent extends basecomponent{
     }
 
 
+    public function getUser()
+    {
+        if(!($object = $this->mymodel->findUser($this)))
+        {
+            $this->actionError = true;
+            return null;
+        }
+
+        return $object;
+    }
+
+    public function editUser()
+    {
+        if($this->mymodel->updateUser($this))
+        {
+            return true;
+        }
+
+        $this->actionError = true;
+        return false;
+    }
+
+
     /**
      * @param mixed $address
      */
@@ -211,6 +234,25 @@ class usercomponent extends basecomponent{
     {
         return $this->userid;
     }
+
+    /**
+     * @param mixed $lastmodified
+     */
+    public function setLastmodified($lastmodified)
+    {
+        $this->lastmodified = $lastmodified;
+    }
+
+    /**
+     * @param mixed $datecreated
+     */
+    public function setDatecreated($datecreated)
+    {
+        $this->datecreated = $datecreated;
+    }
+
+
+
 
 
 }

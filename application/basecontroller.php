@@ -18,9 +18,7 @@ Abstract class basecontroller {
 
     abstract public function index();
 
-    public function controllerComponents()
-    {
-        return null;
-    }
+   abstract public function controllerComponents();
+
 
 }
